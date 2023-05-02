@@ -1,0 +1,393 @@
+* {
+    margin: 0%;
+}
+html {
+    background-color: whitesmoke;
+}
+
+svg {
+    width: 40px;
+}
+a {
+
+    text-decoration: none;
+    color: black;
+}
+header {
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #0097a1;
+
+    border-radius: 0% 0% 20% 20%;
+    border-bottom: solid;
+    
+}
+header ul {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    
+    background-color: #EE7601;
+    border-radius: 40px;
+
+    border-radius: 10px;
+}
+header ul li {
+    list-style-type: none;
+}
+
+#corps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: space-between;
+    padding: 20px;
+
+}
+
+#corps section {
+    margin-bottom: 10px;
+}
+
+#moneventencours{
+    background-color: rgb(148, 57, 57);
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px;
+    border-radius: 30px;
+    border: solid #0097a1;
+}
+
+#moneventencours #infoeventencours {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+#eventencours{
+    background-color: aliceblue;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 10px;
+    border-radius: 30px;
+    border: solid #0097a1;
+}
+
+#eventencours #info {
+    
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+#information {
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    padding: 10px;
+}
+
+.conteneurinfo {
+    background-color: white;
+    border: solid;
+    border-radius: 30px;
+    padding: 10px;
+}
+#information #prochainevents {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#information #prochainevents .events {
+    width: 100%;
+    display: flex;
+    justify-content:space-evenly;
+
+    padding: 5px;
+}
+#information #prochainevents .images {
+    width: 150px;
+    height: 100px;
+
+    background-color: #003777;
+    color: white;
+}
+
+#information #prochainevents .infoevent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#information #invit{
+    width: 30%;
+    
+}
+#information #invit #invitation{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#information #invit #invitation div{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+#information #invit #assodemande div{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.checkinvit svg:first-child{
+    margin-right: 10px;
+}
+.checkinvit svg{
+    width: 20px;
+}
+
+.checkinvit svg:first-child:hover{
+    fill: green;
+}
+.checkinvit svg:last-child:hover{
+    fill: red;
+}
+
+
+#mesevent {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: solid;
+    border-radius: 30px;
+    padding: 10px;
+}
+.monevent{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.infomonevent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.monevent div:last-child{
+    display: flex;
+    align-items: center;
+}
+#mesevent svg:hover{
+    animation: rotation 0.5s 1 ease;
+}
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
+
+
+#membreAsso {
+    width: 100%;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: white;
+
+    border: solid;
+    border-radius: 30px;
+}
+#listeasso {
+    width: 90%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.monasso {
+    padding: 10px;
+    background-color: rgb(129, 129, 248);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50px;
+}
+
+#membreAsso svg:hover{
+    animation: rotation 0.5s 1 ease;
+}
+
+
+#event {
+    padding: 5px;
+    display: flex;
+    background-color: white;
+
+}
+#event div{
+    display: flex;
+    align-items: center;
+    
+}
+
+.contentrechercheEvent {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.contentrechercheEvent .images {
+    width: 150px;
+    height: 100px;
+
+    background-color: #003777;
+    color: white;
+}
+.contentrechercheEvent article {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+
+    border: solid;
+}
+
+.contentrechercheEvent article div{
+    width: 80%;
+
+    display: flex;
+    justify-content: space-between;
+
+}
+.contentrechercheEvent article div:first-child p{ 
+    display: block;
+    width: 50%;
+    height: 100px;
+    overflow: hidden;
+}
+.contentrechercheEvent article div:nth-child(2){
+    padding-top: 5px;
+    width: 50%;
+}
+
+.contentrechercheEvent article div:last-child{
+    display: flex;
+    justify-content: flex-end;
+}
+#event:hover>div{
+    visibility: visible;
+}
+
+
+
+#asso {
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+
+}
+#asso div{
+    display: flex;
+    align-items: center;
+    
+}
+
+.contentrechercheAsso {
+    width: 100%;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.contentrechercheAsso article {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+
+    border: solid;
+}
+
+.contentrechercheAsso article div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.contentrechercheAsso article div:first-child{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.contentrechercheAsso article div:first-child p{ 
+    display: block;
+    width: 40%;
+}
+.contentrechercheAsso article div:last-child{
+    display: flex;
+    justify-content: flex-end;
+}
+#asso:hover>div{
+    visibility: visible;
+}
+
+
+footer {
+
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: #0097a1;
+
+    
+}
+
+footer div {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+

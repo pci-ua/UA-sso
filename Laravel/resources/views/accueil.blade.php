@@ -8,8 +8,8 @@
 
     <label>Qui etes-vous?</label>
     <ul>
-    @foreach($personnes as $personne)
-        <li><a href="http://127.0.0.1:8000/{{ $personne['Identifiant'] }}">{{ $personne['Identifiant'] }}</a></li>
+    @foreach($personnes as $pers)
+        <li><a href="http://127.0.0.1:8000/{{ $pers['Identifiant'] }}">{{ $pers['Identifiant'] }}</a></li>
     @endforeach
     </ul>
 

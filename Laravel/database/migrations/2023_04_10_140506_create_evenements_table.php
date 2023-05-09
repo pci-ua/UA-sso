@@ -21,6 +21,7 @@ class CreateEvenementsTable extends Migration
             $table->string('Lieu');
             $table->bigInteger('nb_max');
             $table->string('Nom_assoc');
+            $table->json('Stock');
             $table->timestamps();
         });
     }

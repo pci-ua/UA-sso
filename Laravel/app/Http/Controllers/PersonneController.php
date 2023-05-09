@@ -9,7 +9,7 @@ use App\Models\Association as Association ;
 use App\Models\Organisateur as Organisateur ;
 use App\Models\Participant as Participant ;
 use App\Models\Evenement as Evenement ;
-
+use App\Models\Rejoindre_association as Rejoindre;
 //use App\Models\Demandeasso as Demande ;
 
 
@@ -28,9 +28,11 @@ class PersonneController extends Controller
     public function personne($identifiant){
         $pers=Personne::where('Identifiant','=', $identifiant)->get()[0];
         
+        $evenement= Evenement::all();
+        $assos = Association::all();
         //Pour affichage event organisateur en cours
             //rajouter des verifications si pas d'event
-        $soneventencours=Evenement::where('id','=', Organisateur::where('Id_pers','=',$pers['id'])->take(1)->get()[0]['Id_event'])->take(1)->get()[0];
+        //$soneventencours=Evenement::where('id','=', Organisateur::where('Id_pers','=',$pers['id'])->take(1)->get()[0]['Id_event'])->take(1)->get()[0];
         //dd($soneventencours);  
         //Pour affichage event participant en cours
         $uneventencours['Nom']= 'Gala';
@@ -43,9 +45,14 @@ class PersonneController extends Controller
         foreach($mesevents as $monevent){
             array_push($sesevents, Evenement::where('id','=', $monevent['Id_event'])->get()[0]);
         }
-    return view('accueilPersonne', [ 'personne'=>$pers,'soneventencours'=> $soneventencours,'eventencours'=> $uneventencours,'mesevents' => $sesevents ]);
+    return view('accueilPersonne', [ 'personne'=>$pers,'mesevents' => $sesevents, 'assos' => $assos, 'evenement' => $evenement ]);
     }
-
+    public function gestion($identifiant, $id){
+        $pers=Personne::where('Identifiant','=', $identifiant)->get()[0];
+        $event=Evenement::where('id','=', $id)->get()[0];
+        return view('gestion', [ 'personne'=>$pers, 'event'=> $event]);
+    
+    }
 
     public function ajoutpersonne($nom, $prenom,$filiere, $mail){
         $personne = New Personne;
@@ -94,5 +101,35 @@ class PersonneController extends Controller
 
         }
         return null;
+    }
+
+    public function refuser($id, $Nom_asso){
+        try {
+            Rejoindre::where('Id_pers','=', $id, 2)->where('Nom_asso','=', $Nom_asso, 2)->delete();
+            return true;
+        } catch (\Throwable $th) {
+            return false;
+        }
+    }
+
+    public function accepter($id, $Nom_asso){
+        if($this->refuser($id,$Nom_asso)){
+            try {
+                $membre = New Membre;
+                $membre->Id_pers=$id;
+                $membre->Id_Asso=$Nom_asso;
+                if($membre->save())
+                    return true;
+                else
+                    return false;
+            } catch (\Throwable $th) {
+                return false;
+            }
+        }
+        else return false;
+    }
+    public function getstock($idevent){
+        //$test=Evenement::where('id','=', $idevent)->get();
+        return 'essaie';
     }
 }

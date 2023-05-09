@@ -49,6 +49,12 @@ Route::get('/{identifiant}', [App\Http\Controllers\PersonneController::class, 'p
 //Route::post('/{identifiant}/ajout_association', [App\Http\Controllers\AssociationController::class, 'ajout'] );
 //Route::post('/{identifiant}/ajout_association', [App\Http\Controllers\PersonneController::class, 'ajout'] );
 
+Route::get('/{identifiant}/{id}', function($identifiant, $id) {
+    $control = new App\Http\Controllers\PersonneController;
+    return$control->gestion($identifiant, $id);
+})->name('gestion_stock')->where('id', '[0-9]+');
+
+
 Route::get('/{identifiant}/ajout_association', function($identifiant) {
     $control = new App\Http\Controllers\PersonneController;
     return $control->form($identifiant, 'asso');
@@ -56,7 +62,7 @@ Route::get('/{identifiant}/ajout_association', function($identifiant) {
 
 Route::get('/{identifiant}/ajout_event', function($identifiant) {
     $control = new App\Http\Controllers\PersonneController;
-    return$control->form($identifiant, 'event');
+    return $control->form($identifiant, 'event');
 })->name('ajout_event');
 
 
@@ -66,6 +72,7 @@ Route::post('/{identifiant}/ajout_event', function($id) {
     return view('test', ['message' => 'Ajout de l\'événement '.request('nom')]);
 
 })->name('ajout_event');
+
 
 Route::post('/{identifiant}/ajout_association', function($identifiant) {
     $control = new App\Http\Controllers\PersonneController;

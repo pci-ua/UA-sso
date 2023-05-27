@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket Test Chat</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+
+<script>
+    var socket = io('localhost:3000');
+/*
+    var send = function (){
+        var text = document.getElementById('m').value;
+        socket.emit('chat message', text)
+    }
+
+    var receive = function(msg){
+        var li = document.createElement('li');
+        li.innerText = msg;
+        document.getElementById('messages').appendChild(li);
+    }
+    socket.on('chat message', receive);
+*/
+
+var send = function (){
+
+    console.log('envoie');
+        var text = document.getElementById('m').value;
+        var ass = document.getElementById('asso').value;
+        var name = document.getElementById('nom').value;
+        socket.emit('chatmessage', {asso:ass ,nom:name,msg:text})
+    }
+
+var receive = function(data){
+    if(data.asso==document.getElementById('asso').value){
+        if(data.nom==document.getElementById('nom').value){
+            // Création de la div
+            var newDiv = document.createElement("div");
+
+            // Ajout de contenu à la div
+            newDiv.innerHTML = data.nom+': '+data.msg;;
+
+            // Ajout de classes à la div (optionnel)
+            newDiv.classList.add("droite");
+
+            // Ajout d'attributs à la div (optionnel)
+            newDiv.setAttribute("id", "maDiv");
+
+            // Ajout de la div au document
+            document.getElementById('messages').appendChild(newDiv);
+        }else {
+
+            // Création de la div
+            var newDiv = document.createElement("div");
+
+            // Ajout de contenu à la div
+            newDiv.innerHTML = data.nom+': '+data.msg;;
+
+            // Ajout de classes à la div (optionnel)
+            newDiv.classList.add("gauche");
+
+            // Ajout d'attributs à la div (optionnel)
+            newDiv.setAttribute("id", "maDiv");
+
+            // Ajout de la div au document
+            document.getElementById('messages').appendChild(newDiv);
+        }
+    }
+}
+
+    socket.on('chatmessage' , receive);
+
+// Envoyez un message de chat spécifique avec la variable "nom"
+/*const nom = 'valeur-de-la-variable';
+const message = 'Contenu du message';
+socket.emit('chatmessage/asso/' + nom, { nom: nom, message: message });
+*/
+</script>
+<style>
+    body{
+        background-color: whitesmoke;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    #tchat{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        width: 60%;
+        height: 40%;
+    }
+    #tchat-inner {
+  overflow: auto;
+  max-height: 600px; /* Définir une hauteur maximale pour l'élément */
+}
+    #containe {
+
+        min-height: 300px;
+        max-height: 300px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+    #containe ul {
+        overflow-y: scroll;
+        scrollbar-color: grey white;
+        scrollbar-width: thin;
+
+    }
+    #sectionmsg {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    #sectionmsg input {
+        width: 90%;
+    }
+
+    #sectionmsg button {
+        width: 10%;
+    }
+    #messages {
+    display: flex;
+    display: block;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    overflow: scroll;
+    width: 100%;
+    }
+
+    .gauche {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .droite {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+</style>
+
+<input id="asso" /><input id="nom" />
+<section id="tchat">
+    <div id="containe">
+        <div id="messages">
+
+        </div>
+        <div id="sectionmsg"><input id="m" /> <button onclick="send()">send</button></div>
+    </div>
+</section>
+</body>
+</html> 
